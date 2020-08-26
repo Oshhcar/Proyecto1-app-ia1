@@ -12,11 +12,11 @@ MongoClient.connect("mongodb+srv://wilson:wilson123@cluster0.jgcb4.gcp.mongodb.n
     router.post('/agregar', function(req, res, next) {
       estudiantesCollection.insertOne(req.body)
       .then(result=>{
-        res.render('agregar', { title: 'Agregar', msg: 'Se agregó correctamente.', err: '' });
+        res.render('agregar', { title: 'Agregar', msg: 'Se agregó correctamente.' });
       })
       .catch(error=>{
         console.error(error)
-        res.render('agregar', { title: 'Agregar', msg: '', err: 'Ocurrió un error, inténtelo de nuevo.' });
+        res.render('agregar', { title: 'Agregar', msg: 'Ocurrió un error, inténtelo de nuevo.' });
       });
     });
 
@@ -25,12 +25,12 @@ MongoClient.connect("mongodb+srv://wilson:wilson123@cluster0.jgcb4.gcp.mongodb.n
       estudiantesCollection.findOne(req.body, function(err, result){
         if(err) {
           console.log(err);
-          res.render('consultar', { title: 'Consultar', msg: '', err: 'Ocurrió un error, inténtelo de nuevo.' });
+          res.render('consultar', { title: 'Consultar', msg: 'No se puede consultar en este momento.' });
         } else {
           if(result != null){
-            res.render('consultar', { title: 'Consultar', msg: 'Si posee un número de grupo.', err: '' });
+            res.render('consultar', { title: 'Consultar', msg: 'Si posee un número de grupo.' });
           } else {
-            res.render('consultar', { title: 'Consultar', msg: 'No existe el estudiante.', err: '' });
+            res.render('consultar', { title: 'Consultar', msg: 'No existe el estudiante.' });
           }
         }
       });
@@ -41,13 +41,13 @@ MongoClient.connect("mongodb+srv://wilson:wilson123@cluster0.jgcb4.gcp.mongodb.n
       estudiantesCollection.find(req.body).toArray(function(err, result){
         if (err){
           console.log(err);
-          res.render('grupo', { title: 'Grupo' , msg: '', err: 'Ocurrió un error, inténtelo de nuevo.', data: [] });
+          res.render('grupo', { title: 'Grupo' , msg: 'Ocurrió un error, inténtelo de nuevo.', data: [] });
         } else {
           if(result.length > 0){
             //console.log(result);
-            res.render('grupo', { title: 'Grupo' , msg: '', err: '', data: result});
+            res.render('grupo', { title: 'Grupo' , msg: 'Si se encontró el grupo', data: result});
           } else{
-            res.render('grupo', { title: 'Grupo' , msg: 'El grupo no existe.', err: '', data: [] });
+            res.render('grupo', { title: 'Grupo' , msg: 'No se encontró el grupo.', data: [] });
 
           }
         }
@@ -65,17 +65,17 @@ router.get('/', function(req, res, next) {
 
 /* GET agregar page. */
 router.get('/agregar', function(req, res, next) {
-  res.render('agregar', { title: 'Agregar', msg: '', err: '' });
+  res.render('agregar', { title: 'Agregar', msg: '' });
 });
 
 /* GET consultar page. */
 router.get('/consultar', function(req, res, next) {
-  res.render('consultar', { title: 'Consultar', msg: '', err: ''});
+  res.render('consultar', { title: 'Consultar', msg: ''});
 });
 
 /* GET grupo page. */
 router.get('/grupo', function(req, res, next) {
-  res.render('grupo', { title: 'Grupo' , msg: '', err: '', data: [] });
+  res.render('grupo', { title: 'Grupo' , msg: '', data: [] });
 });
 
 module.exports = router;

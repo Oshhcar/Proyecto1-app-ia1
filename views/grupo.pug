@@ -25,8 +25,6 @@ block content
     form.form-agregar(_lpchecked="1" action="/grupo" method="POST")
       if msg
         .alert.alert-info(role="alert") #{msg} 
-      if err
-        .alert.alert-danger(role="alert") #{err} 
       .form-label-group
           input.form-control(name="grupo" id="inputGrupo" type="text" placeholder="Grupo" required="" autofocus="" autocomplete="off")
           label(for="inputGrupo") Grupo
