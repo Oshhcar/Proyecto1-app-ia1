@@ -20,9 +20,39 @@ MongoClient.connect("mongodb+srv://wilson:wilson123@cluster0.jgcb4.gcp.mongodb.n
     /* POST agregar. */
     router.post('/agregar', function(req, res, next) {
       estudiantesCollection.insertOne(req.body)
-      .catch(error=>console.error(error));
+      .then(result=>{
+        res.render('agregar', { title: 'Agregar', msg: 'Se agregó correctamente.', err: '' });
+      })
+      .catch(error=>{
+        console.error(error)
+        res.render('agregar', { title: 'Agregar', msg: '', err: 'Ocurrió un error, inténtelo de nuevo.' });
+      });
+    });
 
-      res.redirect('/agregar')
+    /* POST consultar. */
+    router.post('/consultar', function(req, res, next) {
+      estudiantesCollection.findOne(req.body, function(err, result){
+        if(err) {
+          console.log(err);
+          res.render('consultar', { title: 'Consultar', msg: '', err: 'Ocurrió un error, inténtelo de nuevo.' });
+        } else {
+          if(result != null){
+            res.render('consultar', { title: 'Consultar', msg: 'Si posee un número de grupo.', err: '' });
+          } else {
+            res.render('consultar', { title: 'Consultar', msg: 'No existe el estudiante.', err: '' });
+          }
+        }
+      })
+      /*
+      estudiantesCollection.insertOne(req.body)
+      .then(result=>{
+
+      })
+      .catch(error=>{
+        console.error(error)
+      });
+
+      res.redirect('/agregar')*/
     });
 
 
@@ -36,12 +66,12 @@ router.get('/', function(req, res, next) {
 
 /* GET agregar page. */
 router.get('/agregar', function(req, res, next) {
-  res.render('agregar', { title: 'Agregar' });
+  res.render('agregar', { title: 'Agregar', msg: '', err: '' });
 });
 
 /* GET consultar page. */
 router.get('/consultar', function(req, res, next) {
-  res.render('consultar', { title: 'Consultar' });
+  res.render('consultar', { title: 'Consultar', msg: '', err: ''});
 });
 
 /* GET grupo page. */

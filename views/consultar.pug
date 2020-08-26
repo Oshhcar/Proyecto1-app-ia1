@@ -22,30 +22,22 @@ block content
         input.form-control.mr-sm-2(type='text' placeholder='Buscar' aria-label='Buscar')
         button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Buscar
   main.container(role='main')
-    .jumbotron
-      h1 Home
-      p.lead
-        | Estás en la página Home
-      a.btn.btn-lg.btn-primary(href='#' role='button') Botón &raquo;
-    .container
-    
-    .row
-      .col-md-4
-        h2 Contenido
-        p
-          | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-        p
-          a.btn.btn-secondary(href='#' role='button') Ver más &raquo;
-      .col-md-4
-        h2 Contenido
-        p
-          | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-        p
-          a.btn.btn-secondary(href='#' role='button') Ver más &raquo;
-      .col-md-4
-        h2 Contenido
-        p
-          | Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-        p
-          a.btn.btn-secondary(href='#' role='button') Ver más &raquo;
+    form.form-agregar(_lpchecked="1" action="/consultar" method="POST")
+        if msg
+          .alert.alert-info(role="alert") #{msg} 
+        if err
+          .alert.alert-danger(role="alert") #{err} 
+        .form-label-group
+            input.form-control(name="carne" id="inputCarne" type="number" placeholder="Carné" required="" autofocus="" autocomplete="off")
+            label(for="inputCarne") Carné
+
+        .form-label-group
+            input.form-control(name="anio" id="inputAnio" type="number" placeholder="Año" required="" autofocus="" autocomplete="off")
+            label(for="inputAnio") Año 
+
+        .form-label-group
+            input.form-control(name="semestre" id="inputSemestre" type="text" placeholder="Semestre" required="" autofocus="" autocomplete="off")
+            label(for="inputSemestre") Semestre
+
+        button.btn.btn-success.btn-block(type="submit") Consultar
     hr

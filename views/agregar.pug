@@ -23,6 +23,10 @@ block content
         button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Buscar
   main.container(role='main')
     form.form-agregar(_lpchecked="1" action="/agregar" method="POST")
+        if msg
+          .alert.alert-success(role="alert") #{msg} 
+        if err
+          .alert.alert-danger(role="alert") #{err} 
         .form-label-group
             input.form-control(name="nombre" id="inputNombre" type="text" placeholder="Nombre" required="" autofocus="" autocomplete="off")
             label(for="inputNombre") Nombre
