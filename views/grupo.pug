@@ -37,11 +37,13 @@ block content
       thead
         tr
           th(scope="col") #
+          th(scope="col") Carné
           th(scope="col") Correo
       tbody
         each val, index in data
           tr
             th(scope="col") #{index+1}
+            td #{val.carne}
             td #{val.correo}
 
     hr
