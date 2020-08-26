@@ -8,14 +8,14 @@ block content
       span.navbar-toggler-icon
     #navbarCollapse.collapse.navbar-collapse
       ul.navbar-nav.mr-auto
-        li.nav-item.active
-          a.nav-link(href='/')
-            | Home 
-            span.sr-only (current)
+        li.nav-item
+          a.nav-link(href='/') Home
         li.nav-item
           a.nav-link(href='agregar') Agregar
-        li.nav-item
-          a.nav-link(href='consultar') Consultar
+        li.nav-item.active
+          a.nav-link(href='consultar')
+            | Consultar 
+            span.sr-only (current)
         li.nav-item
           a.nav-link(href='grupo') Grupo
       form.form-inline.mt-2.mt-md-0

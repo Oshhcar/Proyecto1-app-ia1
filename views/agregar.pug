@@ -1,0 +1,55 @@
+extends layout
+
+block content
+  
+  nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4
+    a.navbar-brand(href='/') Estudiantes
+    button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarCollapse' aria-controls='navbarCollapse' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarCollapse.collapse.navbar-collapse
+      ul.navbar-nav.mr-auto
+        li.nav-item
+          a.nav-link(href='/') Home
+        li.nav-item.active
+          a.nav-link(href='agregar')
+            | Agregar 
+            span.sr-only (current)
+        li.nav-item
+          a.nav-link(href='consultar') Consultar
+        li.nav-item
+          a.nav-link(href='grupo') Grupo
+      form.form-inline.mt-2.mt-md-0
+        input.form-control.mr-sm-2(type='text' placeholder='Buscar' aria-label='Buscar')
+        button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Buscar
+  main.container(role='main')
+    form.form-agregar(_lpchecked="1" action="/quotes" method="POST")
+        .form-label-group
+            input.form-control(name="nombre" id="inputNombre" type="text" placeholder="Nombre" required="" autofocus="" autocomplete="off")
+            label(for="inputNombre") Nombre
+
+        .form-label-group
+            input.form-control(name="carne" id="inputCarne" type="number" placeholder="Carné" required="" autofocus="" autocomplete="off")
+            label(for="inputCarne") Carné
+
+        .form-label-group
+            input.form-control(name="dpi" id="inputDPI" type="number" placeholder="DPI" required="" autofocus="" autocomplete="off")
+            label(for="inputDPI") DPI
+        
+        .form-label-group
+            input.form-control(name="semestre" id="inputSemestre" type="text" placeholder="Semestre" required="" autofocus="" autocomplete="off")
+            label(for="inputSemestre") Semestre
+
+        .form-label-group
+            input.form-control(name="anio" id="inputAnio" type="number" placeholder="Año" required="" autofocus="" autocomplete="off")
+            label(for="inputAnio") Año 
+
+        .form-label-group
+            input.form-control(name="grupo" id="inputGrupo" type="text" placeholder="Grupo" required="" autofocus="" autocomplete="off")
+            label(for="inputGrupo") Grupo
+
+        .form-label-group
+            input.form-control(name="correo" id="inputCorreo" type="email" placeholder="Correo" required="" autofocus="" autocomplete="off")
+            label(for="inputCorreo") Correo
+
+        button.btn.btn-success.btn-block(type="submit") Agregar
+    hr

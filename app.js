@@ -3,11 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const bodyParser= require('body-parser')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+app.use(bodyParser.urlencoded({ extended: true }))
+
+app.post('/quotes', (req, res) => {
+  console.log(req.body)
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -18,6 +25,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+// Bootstrap 4 y librerías necesarias
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
+app.use('/js', express.static(__dirname + '/node_modules/popper.js/dist'));
+app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js'));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
