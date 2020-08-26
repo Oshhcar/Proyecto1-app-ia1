@@ -22,30 +22,26 @@ block content
         input.form-control.mr-sm-2(type='text' placeholder='Buscar' aria-label='Buscar')
         button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Buscar
   main.container(role='main')
-    .jumbotron
-      h1 Home
-      p.lead
-        | Estás en la página Home
-      a.btn.btn-lg.btn-primary(href='#' role='button') Botón &raquo;
-    .container
+    form.form-agregar(_lpchecked="1" action="/grupo" method="POST")
+      if msg
+        .alert.alert-info(role="alert") #{msg} 
+      if err
+        .alert.alert-danger(role="alert") #{err} 
+      .form-label-group
+          input.form-control(name="grupo" id="inputGrupo" type="text" placeholder="Grupo" required="" autofocus="" autocomplete="off")
+          label(for="inputGrupo") Grupo
+
+      button.btn.btn-success.btn-block(type="submit") Consultar
     
-    .row
-      .col-md-4
-        h2 Contenido
-        p
-          | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-        p
-          a.btn.btn-secondary(href='#' role='button') Ver más &raquo;
-      .col-md-4
-        h2 Contenido
-        p
-          | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-        p
-          a.btn.btn-secondary(href='#' role='button') Ver más &raquo;
-      .col-md-4
-        h2 Contenido
-        p
-          | Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-        p
-          a.btn.btn-secondary(href='#' role='button') Ver más &raquo;
+    table.table.table-grupo
+      thead
+        tr
+          th(scope="col") #
+          th(scope="col") Correo
+      tbody
+        each val, index in data
+          tr
+            th(scope="col") #{index+1}
+            td #{val.correo}
+
     hr

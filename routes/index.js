@@ -42,17 +42,25 @@ MongoClient.connect("mongodb+srv://wilson:wilson123@cluster0.jgcb4.gcp.mongodb.n
             res.render('consultar', { title: 'Consultar', msg: 'No existe el estudiante.', err: '' });
           }
         }
-      })
-      /*
-      estudiantesCollection.insertOne(req.body)
-      .then(result=>{
-
-      })
-      .catch(error=>{
-        console.error(error)
       });
+    });
 
-      res.redirect('/agregar')*/
+    /* POST grupo. */
+    router.post('/grupo', function(req, res, next) {
+      estudiantesCollection.find(req.body).toArray(function(err, result){
+        if (err){
+          console.log(err);
+          res.render('grupo', { title: 'Grupo' , msg: '', err: 'Ocurrió un error, inténtelo de nuevo.', data: [] });
+        } else {
+          if(result.length > 0){
+            //console.log(result);
+            res.render('grupo', { title: 'Grupo' , msg: '', err: '', data: result});
+          } else{
+            res.render('grupo', { title: 'Grupo' , msg: 'El grupo no existe.', err: '', data: [] });
+
+          }
+        }
+      });
     });
 
 
@@ -76,7 +84,7 @@ router.get('/consultar', function(req, res, next) {
 
 /* GET grupo page. */
 router.get('/grupo', function(req, res, next) {
-  res.render('grupo', { title: 'Grupo' });
+  res.render('grupo', { title: 'Grupo' , msg: '', err: '', data: [] });
 });
 
 
