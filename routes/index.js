@@ -2,15 +2,6 @@ var express = require('express');
 var router = express.Router();
 const MongoClient = require('mongodb').MongoClient
 
-/*
-MongoClient.connect("mongodb+srv://wilson:wilson123@cluster0.jgcb4.gcp.mongodb.net/estudiante?retryWrites=true&w=majority", {
-  useUnifiedTopology: true
-}, (err, client) => {
-  if (err) return console.error(err)
-  console.log('Connected to Database')
-})
-*/
-
 MongoClient.connect("mongodb+srv://wilson:wilson123@cluster0.jgcb4.gcp.mongodb.net/practica1?retryWrites=true&w=majority", { 
   useUnifiedTopology: true })
   .then(client => {
@@ -86,12 +77,5 @@ router.get('/consultar', function(req, res, next) {
 router.get('/grupo', function(req, res, next) {
   res.render('grupo', { title: 'Grupo' , msg: '', err: '', data: [] });
 });
-
-
-/* POST grupo. */
-router.post('/grupo', function(req, res, next) {
-  console.log(req.body);
-});
-
 
 module.exports = router;
