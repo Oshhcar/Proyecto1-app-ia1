@@ -88,4 +88,10 @@ router.get('/grupo', function(req, res, next) {
 });
 
 
+/* POST grupo. */
+router.post('/grupo', function(req, res, next) {
+  console.log(req.body);
+});
+
+
 module.exports = router;
