@@ -3,39 +3,171 @@ extends layout
 block content
   
   nav.navbar.navbar-expand-md.navbar-dark.bg-dark.mb-4
-    a.navbar-brand(href='/') Estudiantes
+    a.navbar-brand(href='/') Animales
     button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarCollapse' aria-controls='navbarCollapse' aria-expanded='false' aria-label='Toggle navigation')
       span.navbar-toggler-icon
     #navbarCollapse.collapse.navbar-collapse
       ul.navbar-nav.mr-auto
         li.nav-item
           a.nav-link(href='/') Home
-        li.nav-item
-          a.nav-link(href='agregar') Agregar
         li.nav-item.active
           a.nav-link(href='consultar')
             | Consultar 
             span.sr-only (current)
-        li.nav-item
-          a.nav-link(href='grupo') Grupo
       form.form-inline.mt-2.mt-md-0
         input.form-control.mr-sm-2(type='text' placeholder='Buscar' aria-label='Buscar')
         button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Buscar
   main.container(role='main')
-    form.form-agregar(_lpchecked="1" action="/consultar" method="POST")
+    form.form-consultar(_lpchecked="1" action="/consultar" method="POST")
         if msg
           .alert.alert-info(role="alert") #{msg} 
-        .form-label-group
-            input.form-control(name="carne" id="inputCarne" type="number" placeholder="Carné" required="" autofocus="" autocomplete="off")
-            label(for="inputCarne") Carné
+        
+        .form-row
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="clasificacion" id="invertebrado" value="invertebrado")
+            label.form-check-label(for="invertebrado") Invertebrado
+
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="clasificacion" id="vertebrado" value="vertebrado")
+            label.form-check-label(for="vertebrado") Vertebrado
+
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="clasificacion" id="todo" value="todo" checked)
+            label.form-check-label(for="todo") Todo
+
+        .form-group
+          label(for="tipo") Tipo
+          select.form-control(name="tipo" id="tipo")
+            option(value="" selected="") Eliga un tipo
+            option(value="antropodo") Artrópodos
+            option(value="pez") Pez
+            option(value="anfibio") Anfibio
+            option(value="ave") Ave
+            option(value="mamifero") Mamífero
+
+        .form-group
+          label(for="longevidad") Longevidad
+          select.form-control(name="longevidad" id="longevidad")
+            option(value="" selected="") Eliga una longevidad
+            option(value="alta") Alta
+            option(value="media") Media
+            option(value="baja") Baja
+        
+        .form-group
+          label(for="sangre") Sangre
+          select.form-control(name="sangre" id="sangre")
+            option(value="" selected="") Eliga un tipo
+            option(value="fria") Fría
+            option(value="caliente") Caliente
+
+        .form-group
+          label(for="especie") Estado especie
+          select.form-control(name="especie" id="especie")
+            option(value="" selected="") Eliga un estado
+            option(value="extinta") Extinta
+            option(value="vulnerable") Vulnerable
+            option(value="sin_peligro") Sin Peligro
+
+        .form-group
+          label(for="tipo_animal") Tipo animal
+          select.form-control(name="tipo_animal" id="tipo_animal")
+            option(value="" selected="") Eliga un tipo
+            option(value="grande") Grande
+            option(value="pequeño") Pequeño
+
+        .form-group
+          label(for="velocidad") Velocidad
+          select.form-control(name="velocidad" id="velocidad")
+            option(value="" selected="") Eliga una velocidad
+            option(value="lento") Lento
+            option(value="normal") Normal
+            option(value="rapido") Rápido
+
+        .form-row
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="exoesqueleto" id="con" value="con")
+            label.form-check-label(for="con") Con Exoesqueleto
+        
+        .form-row
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="marino" id="marino" value="marino")
+            label.form-check-label(for="marino") Marinos
+
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="marino" id="terrestre" value="terrestre")
+            label.form-check-label(for="terrestre") Terrestres
+
+        .form-row
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="nacen_agua" id="nacen_agua" value="nacen_agua")
+            label.form-check-label(for="nacen_agua") Nacen en el agua
+          
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="toman_leche" id="toman_leche" value="toman_leche")
+            label.form-check-label(for="toman_leche") Toman Leche
+        
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="puede_sentir" id="puede_sentir" value="puede_sentir")
+            label.form-check-label(for="puede_sentir") Puede sentir
+
+        .form-row
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="tienen_cola" id="tienen_cola" value="tienen_cola")
+            label.form-check-label(for="tienen_cola") Tienen cola
+
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="tienen_escamas" id="tienen_escamas" value="tienen_escamas")
+            label.form-check-label(for="tienen_escamas") Tienen escamas
+          
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="puede_volar" id="puede_volar" value="puede_volar")
+            label.form-check-label(for="puede_volar") Puede volar
+
+        .form-row
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="viven_agua" id="viven_agua" value="viven_agua")
+            label.form-check-label(for="viven_agua") Viven en el agua
+
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="ponen_huevos" id="ponen_huevos" value="ponen_huevos")
+            label.form-check-label(for="ponen_huevos") Ponen huevos
+
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="tienen_alas" id="tienen_alas" value="tienen_alas")
+            label.form-check-label(for="tienen_alas") Tienen alas
+
+        .form-row
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="tiene_vida" id="tiene_vida" value="tiene_vida")
+            label.form-check-label(for="tiene_vida") Tiene vida
+
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="puede_respirar" id="puede_respirar" value="puede_respirar")
+            label.form-check-label(for="puede_respirar") Puede respirar
+
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="tiene_huesos" id="tiene_huesos" value="tiene_huesos")
+            label.form-check-label(for="tiene_huesos") Tiene Huesos
 
         .form-label-group
-            input.form-control(name="anio" id="inputAnio" type="number" placeholder="Año" required="" autofocus="" autocomplete="off")
-            label(for="inputAnio") Año 
-
-        .form-label-group
-            input.form-control(name="semestre" id="inputSemestre" type="text" placeholder="Semestre" required="" autofocus="" autocomplete="off")
-            label(for="inputSemestre") Semestre
+          input.form-control(name="carne" id="inputCarne" type="number" placeholder="Carné" autofocus="" autocomplete="off")
+          label(for="inputCarne") Carné
 
         button.btn.btn-success.btn-block(type="submit") Consultar
     hr
+
+    table.table.table-animal
+      thead
+        tr
+          th(scope="col") #
+          th(scope="col") Nombre
+          th(scope="col") Nombre científico
+          th(scope="col") Info
+      tbody
+        each val, index in data
+          tr
+            th(scope="col") #{index+1}
+            td #{val.nombre}
+            td #{val.nombrecientifico}
+            td 
+              a.nav-link(href='/animal/'+val.nombre) info

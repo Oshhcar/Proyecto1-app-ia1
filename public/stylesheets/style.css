@@ -9,18 +9,22 @@ a {
 }
 */
 
-.form-agregar {
+.form-consultar {
+  width: 100%;
+  max-width: 480px;
+  padding: 15px;
+  margin: auto;
+}
+
+.table-animal {
   width: 100%;
   max-width: 420px;
   padding: 15px;
   margin: auto;
 }
 
-.table-grupo {
-  width: 100%;
-  max-width: 420px;
-  padding: 15px;
-  margin: auto;
+.form-check {
+  margin-bottom: 1rem;
 }
 
 .form-label-group {
