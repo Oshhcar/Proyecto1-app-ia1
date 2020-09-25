@@ -17,6 +17,7 @@ extinta(X):- X == 0.
 vulnerable(X):- X < 5000.
 no_peligro(X):- X >= 5000.
 animal_grande(X,Y):- X > 50, Y > 1.
+animal_pequeno(X,Y):- \+ animal_grande(X,Y).
 animal_lento(X):- X < 1.
 animal_rapido(X):- X > 10.
 animal_normal(X):- \+ animal_lento(X), \+ animal_rapido(X).

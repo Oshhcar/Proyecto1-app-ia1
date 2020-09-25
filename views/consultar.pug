@@ -61,19 +61,19 @@ block content
             option(value="caliente") Caliente
 
         .form-group
-          label(for="especie") Estado especie
-          select.form-control(name="especie" id="especie")
+          label(for="estado") Estado especie
+          select.form-control(name="estado" id="estado")
             option(value="" selected="") Eliga un estado
             option(value="extinta") Extinta
             option(value="vulnerable") Vulnerable
-            option(value="sin_peligro") Sin Peligro
+            option(value="no_peligro") Sin Peligro
 
         .form-group
           label(for="tipo_animal") Tipo animal
           select.form-control(name="tipo_animal" id="tipo_animal")
             option(value="" selected="") Eliga un tipo
             option(value="grande") Grande
-            option(value="pequeño") Pequeño
+            option(value="pequeno") Pequeño
 
         .form-group
           label(for="velocidad") Velocidad
@@ -96,6 +96,10 @@ block content
           .form-check.custom-control-inline
             input.form-check-input(type="radio" name="marino" id="terrestre" value="terrestre")
             label.form-check-label(for="terrestre") Terrestres
+          
+          .form-check.custom-control-inline
+            input.form-check-input(type="radio" name="marino" id="todo" value="" checked)
+            label.form-check-label(for="todo") Todo
 
         .form-row
           .form-check.custom-control-inline
@@ -112,16 +116,16 @@ block content
 
         .form-row
           .form-check.custom-control-inline
-            input.form-check-input(type="radio" name="tienen_cola" id="tienen_cola" value="tienen_cola")
-            label.form-check-label(for="tienen_cola") Tienen cola
+            input.form-check-input(type="radio" name="tiene_cola" id="tiene_cola" value="tiene_cola")
+            label.form-check-label(for="tiene_cola") Tienen cola
 
           .form-check.custom-control-inline
-            input.form-check-input(type="radio" name="tienen_escamas" id="tienen_escamas" value="tienen_escamas")
-            label.form-check-label(for="tienen_escamas") Tienen escamas
+            input.form-check-input(type="radio" name="tiene_escama" id="tiene_escama" value="tiene_escama")
+            label.form-check-label(for="tiene_escama") Tienen escamas
           
           .form-check.custom-control-inline
-            input.form-check-input(type="radio" name="puede_volar" id="puede_volar" value="puede_volar")
-            label.form-check-label(for="puede_volar") Puede volar
+            input.form-check-input(type="radio" name="pueden_volar" id="pueden_volar" value="pueden_volar")
+            label.form-check-label(for="pueden_volar") Puede volar
 
         .form-row
           .form-check.custom-control-inline
@@ -146,28 +150,34 @@ block content
             label.form-check-label(for="puede_respirar") Puede respirar
 
           .form-check.custom-control-inline
-            input.form-check-input(type="radio" name="tiene_huesos" id="tiene_huesos" value="tiene_huesos")
-            label.form-check-label(for="tiene_huesos") Tiene Huesos
+            input.form-check-input(type="radio" name="tiene_hueso" id="tiene_hueso" value="tiene_hueso")
+            label.form-check-label(for="tiene_hueso") Tiene Huesos
 
         .form-label-group
-          input.form-control(name="carne" id="inputCarne" type="number" placeholder="Carné" autofocus="" autocomplete="off")
-          label(for="inputCarne") Carné
+          input.form-control(name="nombre" id="nombre" type="text" placeholder="Nombre" autofocus="" autocomplete="off")
+          label(for="nombre") Ingrese el nombre del animal
 
         button.btn.btn-success.btn-block(type="submit") Consultar
     hr
 
-    table.table.table-animal
-      thead
-        tr
-          th(scope="col") #
-          th(scope="col") Nombre
-          th(scope="col") Nombre científico
-          th(scope="col") Info
-      tbody
-        each val, index in data
+    if(data.length > 0)
+      table.table.table-animal
+        thead
           tr
-            th(scope="col") #{index+1}
-            td #{val.nombre}
-            td #{val.nombrecientifico}
-            td 
-              a.nav-link(href='/animal/'+val.nombre) info
+            th(scope="col") #
+            th(scope="col") Nombre
+            th(scope="col") Nombre científico
+            th(scope="col") Info
+        tbody
+          each val, index in data
+            tr
+              th(scope="col") #{index+1}
+              td #{val.nombre}
+              td #{val.nombrecientifico}
+              td 
+                a.nav-link(href='/animal/'+val.nombre) info
+    else
+      if(t == 1)
+        .alert.alert-info(role="alert") Ningún animal cumple con esas carácteristica. 
+      if msg2
+          .alert.alert-info(role="alert") #{msg2} 
