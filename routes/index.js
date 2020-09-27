@@ -33,7 +33,7 @@ session.consult(`
   extinta(X):- X == 0.
   vulnerable(X):- X < 5000.
   no_peligro(X):- X >= 5000.
-  animal_grande(X,Y):- X > 50, Y > 1.
+  animal_grande(X,Y):- X > 50; Y > 1.
   animal_lento(X):- X < 1.
   animal_rapido(X):- X > 10.
   animal_normal(X):- X >= 1, X =< 10.
