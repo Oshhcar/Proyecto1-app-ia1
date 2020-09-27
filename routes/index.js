@@ -19,7 +19,6 @@ session.consult(`
   terrestre(ave).
   terrestre(mamifero).
   nacen_agua(anfibio).
-  nacen_agua(pez).
   tiene_cola(anfibio).
   tiene_escama(reptil).
   viven_agua(pez).
